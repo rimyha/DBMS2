@@ -1,0 +1,16 @@
+Create or replace type Faculty_T as object (
+fac_id varchar2(10) , name varchar2(20) , dean varchar2(10) , school varchar2(20) , department varchar2(20) , research_center varchar2(10) , member precedure Show_parts) ; /
+create or replace type Faculty_Table_T AS Table of Faculty_T /
+create or replace procedure Show_parts (
+new_id IN Faculty_T.id%TYPE) AS new_name Faculty_T.name%TYPE;
+new_dean Faculty_T.dean%TYPE;
+new_school Faculty_T.school%TYPE;
+new_department Faculty_T.department%TYPE;
+new_research_center Faculty_T.research_center%TYPE;
+Begin
+Select name , dean , school , department , research_center
+INTO new_name ,new_dean, new_school, new_department, new_research_center
+from Faculty_T
+where id = new_id;
+DBMS_OUTPUT.PUT_LINE ( new_name ll ' ' ll new_dean ll ' ' ll new_school ll ' ' ll new_department ll ' ' ll new_research_center);
+END Show_parts ; /
